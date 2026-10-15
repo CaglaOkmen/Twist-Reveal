@@ -8,10 +8,11 @@ public class PuzzleManager : MonoBehaviour
     public float threshold = 1.5f;
     bool isSolved = false;
     public float speed = 3f;
-
+    BallMovement ballMove;
     void Start()
     {
         targetRot = Quaternion.Euler(target);
+        ballMove = FindObjectOfType<BallMovement>();
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class PuzzleManager : MonoBehaviour
             if (Quaternion.Angle(cam.rotation, targetRot) < 0.05f)
             {
                 cam.rotation = targetRot;
-                Debug.Log("Kazandin.");
+                ballMove.isMove = true;
                 this.enabled = false;
             }
         }
